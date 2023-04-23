@@ -23,7 +23,8 @@ echo -e "\e[36m>>>>>>>>>>>>>> Install dependent files for App <<<<<<<<<<<<<<<<<\
 npm install
 
 echo -e "\e[36m>>>>>>>>>>>>>> Copy Catelogue service <<<<<<<<<<<<<<<<<\e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service
+rm -rf /etc/systemd/system/catalogue.service
+cp /root/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
 
 
 echo -e "\e[36m>>>>>>>>>>>>>> Start Catalogue service <<<<<<<<<<<<<<<<<\e[0m"
