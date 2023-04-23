@@ -40,4 +40,4 @@ echo -e "\e[36m>>>>>>>>>>>>>> Install Mongo Client <<<<<<<<<<<<<<<<<\e[0m"
 yum install mongodb-org-shell -y
 
 echo -e "\e[36m>>>>>>>>>>>>>> Configure Mongo Schema <<<<<<<<<<<<<<<<<\e[0m"
-mongo --host mogodb-dev.kalis30nov.online </app/schema/catalogue.js
+mongo --host mongodb-dev.kalis30nov.online </app/schema/catalogue.js
