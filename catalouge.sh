@@ -1,8 +1,6 @@
 echo -e "\e[36m>>>>>>>>>>>>>> Configuring Node JS repo <<<<<<<<<<<<<<<<<\e[0m"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
-echo -e "\e[36m>>>>>>>>>>>>>> Copy Catelogue service <<<<<<<<<<<<<<<<<\e[0m"
-cp catalogue.service /etc/systemd/system/catalogue.service
 
 echo -e "\e[36m>>>>>>>>>>>>>> Install Node Js <<<<<<<<<<<<<<<<<\e[0m"
 yum install nodejs -y
@@ -23,6 +21,9 @@ unzip /tmp/catalogue.zip
 
 echo -e "\e[36m>>>>>>>>>>>>>> Install dependent files for App <<<<<<<<<<<<<<<<<\e[0m"
 npm install
+
+echo -e "\e[36m>>>>>>>>>>>>>> Copy Catelogue service <<<<<<<<<<<<<<<<<\e[0m"
+cp catalogue.service /etc/systemd/system/catalogue.service
 
 
 echo -e "\e[36m>>>>>>>>>>>>>> Start Catalogue service <<<<<<<<<<<<<<<<<\e[0m"
