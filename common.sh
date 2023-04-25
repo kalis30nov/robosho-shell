@@ -5,7 +5,7 @@ echo -e "\e[36m>>>>>>>>>>>>>> $1 <<<<<<<<<<<<<<<<<\e[0m"
 }
 
 func_schema(){
-    if ["$schema_setup" =="mongo"]; then
+    if [ "$schema_setup" =="mongo" ]; then
         func_title_print " Copy Mongo Repo "
         rm -rf /etc/yum.repos.d/mongo.repo
         cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
