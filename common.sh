@@ -48,7 +48,7 @@ fun_user_prereq(){
         if [ $? -ne 0]; then
             useradd ${app_user} &>>$log_file
         fi
-        
+
         func_exit_status $?
 
         func_title_print  "Creating App User Homedir "
@@ -120,5 +120,24 @@ func_java_install() {
 
         func_service_systemd
 
+}
+
+
+function_python() {
+        func_title_print "Install Python"
+        yum install python36 gcc python3-devel -y >>$log_file
+        func_exit_status $?
+
+        func_title_print "Updated Password for service"
+        sed -i -e "s/RABBIT_MQ_PASSWD/${RABBIT_MQ_PASSWD}/" ${script_path}/payment.service >>$log_file
+        func_exit_status $?
+
+        fun_user_prereq
+
+        func_title_print "Install PIP"
+        pip3.6 install -r requirements.txt >>$log_file
+        func_exit_status $?
+        
+        func_service_systemd
 }
 

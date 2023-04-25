@@ -2,15 +2,17 @@ script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
 
-yum install golang -y
-useradd $app_user
-mkdir /app
-curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
-cd /app
-unzip /tmp/dispatch.zip
-go mod init dispatch
-go get
-go build
-systemctl daemon-reload
-systemctl enable dispatch
-systemctl start dispatch
+echo -e "\e[36m>>>>>>>>>>>>>> Install GoLang <<<<<<<<<<<<<<<<<\e[0m"
+cho -e "\e[36m>>>>>>>>>>>>>> Install GoLang <<<<<<<<<<<<<<<<<\e[0m" &>> /tmp/roboshop.log
+yum install golang -y &>> /tmp/roboshop.log
+
+fun_user_prereq
+
+echo -e "\e[36m>>>>>>>>>>>>>> Download dependencies <<<<<<<<<<<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>>>>>>> Download dependencies <<<<<<<<<<<<<<<<<\e[0m" &>> /tmp/roboshop.log
+cd /app &>> /tmp/roboshop.log
+go mod init dispatch &>> /tmp/roboshop.log
+go get &>> /tmp/roboshop.log
+go build &>> /tmp/roboshop.log
+
+func_service_systemd
