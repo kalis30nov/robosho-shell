@@ -3,6 +3,7 @@ log_file=/tmp/roboshop.log
 
 func_title_print () {
 echo -e "\e[36m>>>>>>>>>>>>>> $1 <<<<<<<<<<<<<<<<<\e[0m"
+echo -e "\e[36m>>>>>>>>>>>>>> $1 <<<<<<<<<<<<<<<<<\e[0m" &>> $log_file
 }
 
 func_exit_status () {
@@ -43,7 +44,11 @@ func_schema(){
 fun_user_prereq(){
 
         func_title_print  "Adding App User "
-        useradd ${app_user} &>>$log_file
+        id ${app_user} &>>$log_file
+        if [ $? -ne 0]; then
+            useradd ${app_user} &>>$log_file
+        fi
+        
         func_exit_status $?
 
         func_title_print  "Creating App User Homedir "
