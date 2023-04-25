@@ -1,7 +1,6 @@
 script_path={ dirname $0 }
+echo $script_path 
 source ${script_path}/common.sh
-
-echo $script_path
 exit
 
 echo -e "\e[36m>>>>>>>>>>>>>> Configuring Node JS repo <<<<<<<<<<<<<<<<<\e[0m"
