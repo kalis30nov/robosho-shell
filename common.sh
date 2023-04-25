@@ -4,6 +4,20 @@ func_title_print () {
 echo -e "\e[36m>>>>>>>>>>>>>> $1 <<<<<<<<<<<<<<<<<\e[0m"
 }
 
+func_schema(){
+    if ["$schema_setup" =="mongo"]; then
+        func_title_print " Copy Mongo Repo "
+        rm -rf /etc/yum.repos.d/mongo.repo
+        cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo
+
+        func_title_print " Install Mongo Client "
+        yum install mongodb-org-shell -y
+
+        func_title_print " Configure Mongo Schema "
+        mongo --host mongodb-dev.kalis30nov.online </app/schema/${component}.js
+    fi
+}
+
 func_nodejs() {
 func_title_print "Configuring Node JS repo"
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash
@@ -40,4 +54,8 @@ systemctl daemon-reload
 systemctl enable ${component}
 systemctl start ${component}
 
+if [${component} ==]
+
+func_schema
 }
+

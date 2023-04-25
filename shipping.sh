@@ -3,6 +3,11 @@ script_path=$(dirname $script)
 source ${script_path}/common.sh
 MYSQL_ROOT_PASSWD=$1
 
+if [ -z "$MYSQL_ROOT_PASSWD"]; then
+  echo " Password not input"
+  exit
+fi
+
 yum install maven -y
 cp shipping.service /etc/systemd/system/shipping.service
 useradd $app_user

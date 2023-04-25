@@ -3,6 +3,11 @@ script_path=$(dirname $script)
 source ${script_path}/common.sh
 RABBIT_MQ_PASSWD=$1
 
+if [ -z "$RABBIT_MQ_PASSWD"]; then
+  echo " Password not input"
+  exit
+fi
+
 yum install python36 gcc python3-devel -y
 sed -i -e "s/RABBIT_MQ_PASSWD/${RABBIT_MQ_PASSWD}/" ${script_path}/payment.service
 cp ${script_path}/payment.service /etc/systemd/system/payment.service
