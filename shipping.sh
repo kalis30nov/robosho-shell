@@ -1,6 +1,11 @@
+script=$(realpath $0)
+script_path=$(dirname $script)
+source ${script_path}/common.sh
+MYSQL_ROOT_PASSWD=$1
+
 yum install maven -y
 cp shipping.service /etc/systemd/system/shipping.service
-useradd roboshop
+useradd $app_user
 mkdir /app
 curl -L -o /tmp/shipping.zip https://roboshop-artifacts.s3.amazonaws.com/shipping.zip
 cd /app
@@ -11,5 +16,5 @@ systemctl daemon-reload
 systemctl enable shipping
 systemctl start shipping
 yum install mysql -y
-mysql -h mysql-dev.kalis30nov.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql-dev.kalis30nov.online -uroot -p${MYSQL_ROOT_PASSWD} < /app/schema/shipping.sql
 systemctl restart shipping

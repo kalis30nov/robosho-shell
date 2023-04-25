@@ -1,5 +1,9 @@
+script=$(realpath $0)
+script_path=$(dirname $script)
+source ${script_path}/common.sh
+
 yum install golang -y
-useradd roboshop
+useradd $app_user
 mkdir /app
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip
 cd /app

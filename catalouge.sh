@@ -1,42 +1,11 @@
 script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
-echo $app_user 
-exit
 
-echo -e "\e[36m>>>>>>>>>>>>>> Configuring Node JS repo <<<<<<<<<<<<<<<<<\e[0m"
-curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+component=catalouge
+func_nodejs()
 
 
-echo -e "\e[36m>>>>>>>>>>>>>> Install Node Js <<<<<<<<<<<<<<<<<\e[0m"
-yum install nodejs -y
-
-echo -e "\e[36m>>>>>>>>>>>>>> Adding App User <<<<<<<<<<<<<<<<<\e[0m"
-useradd ${app_user}
-
-echo -e "\e[36m>>>>>>>>>>>>>> Creating App User Homedir <<<<<<<<<<<<<<<<<\e[0m"
-rm -rf /app
-mkdir /app
-
-echo -e "\e[36m>>>>>>>>>>>>>> Download Install ZIP file for App <<<<<<<<<<<<<<<<<\e[0m"
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-
-echo -e "\e[36m>>>>>>>>>>>>>> Unzip App content <<<<<<<<<<<<<<<<<\e[0m"
-cd /app
-unzip /tmp/catalogue.zip
-
-echo -e "\e[36m>>>>>>>>>>>>>> Install dependent files for App <<<<<<<<<<<<<<<<<\e[0m"
-npm install
-
-echo -e "\e[36m>>>>>>>>>>>>>> Copy Catelogue service <<<<<<<<<<<<<<<<<\e[0m"
-rm -rf /etc/systemd/system/catalogue.service
-cp /root/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service
-
-
-echo -e "\e[36m>>>>>>>>>>>>>> Start Catalogue service <<<<<<<<<<<<<<<<<\e[0m"
-systemctl daemon-reload
-systemctl enable catalogue
-systemctl start catalogue
 
 echo -e "\e[36m>>>>>>>>>>>>>> Copy Mongo Repo<<<<<<<<<<<<<<<<<\e[0m"
 rm -rf /etc/yum.repos.d/mongo.repo
