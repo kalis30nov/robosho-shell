@@ -1,7 +1,7 @@
 script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
-echo $source 
+echo $app_user 
 exit
 
 echo -e "\e[36m>>>>>>>>>>>>>> Configuring Node JS repo <<<<<<<<<<<<<<<<<\e[0m"
