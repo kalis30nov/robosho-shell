@@ -21,6 +21,7 @@ mkdir /app
 
 func_title_print  "Download Install ZIP file for App"
 curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip
+ls -l /tmp/${component}.zip
 
 func_title_print  "Unzip App content "
 cd /app
