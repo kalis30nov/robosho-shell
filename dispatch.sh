@@ -2,17 +2,27 @@ script=$(realpath $0)
 script_path=$(dirname $script)
 source ${script_path}/common.sh
 
-echo -e "\e[36m>>>>>>>>>>>>>> Install GoLang <<<<<<<<<<<<<<<<<\e[0m"
-cho -e "\e[36m>>>>>>>>>>>>>> Install GoLang <<<<<<<<<<<<<<<<<\e[0m" &>> /tmp/roboshop.log
-yum install golang -y &>> /tmp/roboshop.log
+func_title_print " Install GoLang "
+yum install golang -y &>>$log_file
 
 fun_user_prereq
 
-echo -e "\e[36m>>>>>>>>>>>>>> Download dependencies <<<<<<<<<<<<<<<<<\e[0m"
-echo -e "\e[36m>>>>>>>>>>>>>> Download dependencies <<<<<<<<<<<<<<<<<\e[0m" &>> /tmp/roboshop.log
-cd /app &>> /tmp/roboshop.log
-go mod init dispatch &>> /tmp/roboshop.log
-go get &>> /tmp/roboshop.log
-go build &>> /tmp/roboshop.log
+func_title_print "  Download dependencies "
+cd /app &>>$log_file
+func_exit_status $?
+
+func_title_print "  Init Desptach "
+go mod init dispatch &>>$log_file
+func_exit_status $?
+
+func_title_print "  Golang get "
+go get &>>$log_file
+func_exit_status $?
+
+func_title_print "  Golang Build "
+go build &>>$log_file
+func_exit_status $?
 
 func_service_systemd
+
+
