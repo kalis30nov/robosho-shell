@@ -29,8 +29,8 @@ func_title_print "Change Def password "
 mysql_secure_installation --set-root-pass $MYSQL_ROOT_PASSWD &>>$log_file
 func_exit_status $?
 
-func_title_print "Validate the new password "
-mysql -uroot -p$MYSQL_ROOT_PASSWD &>>$log_file
-func_exit_status $?
+#func_title_print "Validate the new password "
+#mysql -uroot -p$MYSQL_ROOT_PASSWD &>>$log_file
+#func_exit_status $?
 
 
