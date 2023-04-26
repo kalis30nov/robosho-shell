@@ -54,6 +54,7 @@ fun_user_prereq(){
         func_title_print  "Creating App User Homedir "
         rm -rf /app &>>$log_file
         mkdir /app
+        func_exit_status $?
 
         func_title_print  "Download Install ZIP file for App"
         curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>$log_file
@@ -94,6 +95,7 @@ func_nodejs() {
         fun_user_prereq
 
         func_title_print  "Install dependent files for App "
+        cd /app
         npm install &>>$log_file
         func_exit_status $?
 
