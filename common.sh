@@ -17,7 +17,7 @@ fi
 }
 
 func_schema(){
-    if [ "$schema_setup" =="mongo" ]; then
+    if [ "$schema_setup" == "mongo" ]; then
         func_title_print " Copy Mongo Repo "
         rm -rf /etc/yum.repos.d/mongo.repo &>>$log_file
         cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
@@ -31,7 +31,7 @@ func_schema(){
         mongo --host mongodb-dev.kalis30nov.online </app/schema/${component}.js &>>$log_file
         func_exit_status $?
     fi
-    if [ "$schema_setup" =="mysql" ]; then
+    if [ "$schema_setup" == "mysql" ]; then
         func_title_print  "Install MySQL clent"
         yum install mysql -y &>>$log_file
         func_exit_status $?
@@ -97,7 +97,6 @@ func_nodejs() {
         func_title_print  "Install dependent files for App "
         cd /app
         npm install &>>$log_file
-        echo $?
         func_exit_status $?
 
         func_schema
