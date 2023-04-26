@@ -45,7 +45,7 @@ fun_user_prereq(){
 
         func_title_print  "Adding App User "
         id ${app_user} &>>$log_file
-        if [ $? -ne 0]; then
+        if [ $? -ne 0 ]; then
             useradd ${app_user} &>>$log_file
         fi
 
