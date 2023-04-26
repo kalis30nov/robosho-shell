@@ -27,6 +27,7 @@ systemctl start mysqld &>>$log_file
 func_exit_status $?
 
 func_title_print "Change Def password "
+echo "mysql_secure_installation --set-root-pass $(MYSQL_ROOT_PASSWD)"
 mysql_secure_installation --set-root-pass $(MYSQL_ROOT_PASSWD) &>>$log_file
 func_exit_status $?
 
