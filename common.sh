@@ -125,7 +125,7 @@ func_java_install() {
 }
 
 
-function_python() {
+func_python() {
         func_title_print "Install Python"
         yum install python36 gcc python3-devel -y >>$log_file
         func_exit_status $?
