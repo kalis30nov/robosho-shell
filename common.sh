@@ -97,6 +97,7 @@ func_nodejs() {
         func_title_print  "Install dependent files for App "
         cd /app
         npm install &>>$log_file
+        echo $?
         func_exit_status $?
 
         func_schema
