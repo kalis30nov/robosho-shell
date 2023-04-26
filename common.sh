@@ -8,10 +8,10 @@ echo -e "\e[36m>>>>>>>>>>>>>> $1 <<<<<<<<<<<<<<<<<\e[0m" &>> $log_file
 
 func_exit_status () {
 if [ $1 -eq 0 ]; then
-    echo "\e[32mSUCCESS\e0m"
+    echo -e "\e[32mSUCCESS\e0m"
 else
-  echo "\e[31mFAILURE\e0m"
-  echo " Check log file $log_file"
+  echo -e "\e[31mFAILURE\e0m"
+  echo -e " Check log file $log_file"
   exit 1
 fi
 }
