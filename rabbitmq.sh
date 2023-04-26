@@ -3,6 +3,11 @@ script_path=$(dirname $script)
 source ${script_path}/common.sh
 RABBIT_MQ_PASSWD=$1
 
+if [ -z "$RABBIT_MQ_PASSWD" ]; then
+  echo " Password not input"
+  exit
+fi
+
 func_title_print " Install Erlang Repo "
 curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash &>>$log_file
 func_exit_status $?
