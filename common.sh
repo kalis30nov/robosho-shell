@@ -20,7 +20,7 @@ func_schema(){
     if [ "$schema_setup" == "mongo" ]; then
         func_title_print " Copy Mongo Repo "
         rm -rf /etc/yum.repos.d/mongo.repo &>>$log_file
-        cp /root/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
+        cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$log_file
         func_exit_status $?
 
         func_title_print " Install Mongo Client "
